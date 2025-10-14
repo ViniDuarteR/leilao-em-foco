@@ -1,0 +1,147 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    /* Leilão em Foco Brand Colors */
+    --primary: 188 100% 35%; /* Azul #0097b2 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 21 100% 65%; /* Laranja #ff914d */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 33%; /* #545454 */
+
+    --accent: 188 100% 45%; /* Azul claro #0cc0df */
+    --accent-foreground: 0 0% 100%;
+    
+    /* Custom brand colors for specific use */
+    --leilao-azul: 188 100% 35%; /* #0097b2 */
+    --leilao-azul-claro: 188 100% 45%; /* #0cc0df */
+    --leilao-laranja: 21 100% 65%; /* #ff914d */
+    --leilao-preto: 0 0% 0%; /* #000000 */
+    --leilao-cinza: 0 0% 33%; /* #545454 */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 91%;
+    --input: 0 0% 91%;
+    --ring: 188 100% 35%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 33%;
+    --sidebar-primary: 188 100% 35%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 188 100% 35%;
+    --sidebar-border: 0 0% 91%;
+    --sidebar-ring: 188 100% 46%;
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 188 100% 46%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 26 100% 65%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 188 100% 46%;
+    
+    --sidebar-background: 0 0% 9%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 188 100% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 188 100% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom color utilities for logo colors */
+@layer utilities {
+  .text-primary-blue {
+    color: #0097b2;
+  }
+  
+  .text-secondary-blue {
+    color: #0cc0df;
+  }
+  
+  .text-orange {
+    color: #ff914d;
+  }
+  
+  .bg-primary-blue {
+    background-color: #0097b2;
+  }
+  
+  .bg-secondary-blue {
+    background-color: #0cc0df;
+  }
+  
+  .bg-orange {
+    background-color: #ff914d;
+  }
+  
+  .hover\:bg-primary-blue:hover {
+    background-color: #007a8f;
+  }
+  
+  .hover\:bg-secondary-blue:hover {
+    background-color: #0aa0b8;
+  }
+  
+  .hover\:bg-orange:hover {
+    background-color: #e6823d;
+  }
+}
