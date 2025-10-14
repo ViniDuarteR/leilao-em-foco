@@ -24,7 +24,7 @@ const Contato = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -32,7 +32,7 @@ const Contato = () => {
               Fale Conosco
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Estamos aqui para ajudar! Entre em contato conosco através dos canais 
+              Estamos aqui para ajudar! Entre em contato conosco através dos canais
               abaixo ou envie uma mensagem diretamente pelo formulário.
             </p>
           </div>
@@ -52,23 +52,23 @@ const Contato = () => {
                       <p className="text-sm text-gray-600">contato@leilaoemfoco.com.br</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <Phone className="h-5 w-5 text-primary-blue mt-1" />
                     <div>
                       <p className="font-medium">Telefone</p>
-                      <p className="text-sm text-gray-600">(11) 9999-9999</p>
+                      <p className="text-sm text-gray-600">(11) 96617-9980</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <MessageCircle className="h-5 w-5 text-primary-blue mt-1" />
                     <div>
                       <p className="font-medium">WhatsApp</p>
-                      <p className="text-sm text-gray-600">(11) 9999-9999</p>
+                      <p className="text-sm text-gray-600">(11) 96617-9980</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-primary-blue mt-1" />
                     <div>
@@ -76,7 +76,7 @@ const Contato = () => {
                       <p className="text-sm text-gray-600">São Paulo - SP</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-primary-blue mt-1" />
                     <div>
@@ -130,8 +130,8 @@ const Contato = () => {
                       </div>
                       <div>
                         <Label htmlFor="assunto">Assunto *</Label>
-                        <select 
-                          id="assunto" 
+                        <select
+                          id="assunto"
                           required
                           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
@@ -148,11 +148,11 @@ const Contato = () => {
 
                     <div>
                       <Label htmlFor="mensagem">Mensagem *</Label>
-                      <Textarea 
-                        id="mensagem" 
+                      <Textarea
+                        id="mensagem"
                         rows={6}
                         placeholder="Descreva sua dúvida ou solicitação..."
-                        required 
+                        required
                       />
                     </div>
 
@@ -163,8 +163,8 @@ const Contato = () => {
                       </Label>
                     </div>
 
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       className="w-full md:w-auto bg-primary-blue hover:bg-primary-blue/90"
                     >
                       Enviar Mensagem
@@ -211,7 +211,7 @@ const Contato = () => {
           </Card>
         </div>
       </div>
-      
+
       <Footer />
       <WhatsappFloat />
     </div>
