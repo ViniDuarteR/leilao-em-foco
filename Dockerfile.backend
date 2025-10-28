@@ -1,13 +1,66 @@
-FROM node:18-alpine
+# Use a imagem oficial do PHP 8.3 com FPM (base Debian)
+FROM php:8.3-fpm
 
-WORKDIR /usr/app
+# Variáveis de ambiente
+WORKDIR /var/www/html
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
-COPY packages/backend/package*.json ./
+# Instala dependências do sistema Debian e extensões PHP necessárias
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx \
+    supervisor \
+    curl \
+    libzip-dev \
+    zip \
+    unzip \
+    libpq-dev \ 
+    libxml2-dev \
+    libpng-dev \
+    libjpeg-dev \      
+    libfreetype6-dev \
+    libicu-dev \    
+    libxslt-dev \ 
+    libc-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN npm install
+# Instala extensões PHP (mesmo comando deve funcionar)
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && LIBS=-lm docker-php-ext-install -j$(nproc) \
+    pdo pdo_pgsql pgsql \
+    zip \
+    gd \
+    intl \
+    exif \
+    bcmath \
+    sockets \
+    xsl \
+    opcache \
+    mbstring \
+    xml
 
-COPY packages/backend/ .
+# Instala o Composer globalmente
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-EXPOSE 3001
+# Copia arquivos de configuração (Nginx, Supervisor)
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# Configuração Nginx para PHP-FPM (pode precisar de ajuste no path do socket)
+RUN sed -i 's!fastcgi_pass unix:/var/run/php/php8.3-fpm.sock;!fastcgi_pass 127.0.0.1:9000;!g' /etc/nginx/nginx.conf \
+    && mkdir -p /run/php
 
-CMD ["npm", "run", "dev"]
+# Copia o código da aplicação
+COPY --chown=www-data:www-data packages/backend .
+
+# Instala dependências do Composer
+RUN composer install --optimize-autoloader --no-dev --no-interaction --no-progress
+
+# Define permissões
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
+# Expõe a porta 8000
+EXPOSE 8000
+
+# Comando para iniciar o Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
