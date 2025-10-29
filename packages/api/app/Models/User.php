@@ -21,6 +21,17 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
+        'user_type',
+        'cpf',
+        'rg',
+        'address',
+        'phone',
+        'cnpj',
+        'company_name',
+        'website',
+        'junta_comercial',
+        'registration_number',
     ];
 
     /**
@@ -44,5 +55,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+    public function auctions()
+    {
+        return $this->hasMany(Auction::class);
+    }
+    public function isAdmin(): bool
+    {
+        return $this->user_type === 'Admin';
     }
 }
